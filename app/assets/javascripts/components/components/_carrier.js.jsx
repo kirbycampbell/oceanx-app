@@ -1,4 +1,6 @@
-class Carrier extends React.Component {
+import React, { Component, PropTypes } from "react";
+
+class Carrier extends Component {
   constructor(props) {
     super(props);
     this.state = {
