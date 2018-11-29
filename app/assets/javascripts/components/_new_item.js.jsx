@@ -1,7 +1,9 @@
+// This is the new item form
 const NewCarrier = props => {
   let formFields = {};
 
   return (
+    // Once the form submit is clicked it connects to props.handleFormSubmit and sends in the name and built values.
     <form
       onSubmit={e => {
         props.handleFormSubmit(formFields.name.value, formFields.built.value);

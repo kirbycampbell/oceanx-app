@@ -21,6 +21,6 @@ class Api::V1::CarriersController < ApplicationController
     private
   
     def carrier_params
-      params.require(:carrier).permit(:id, :name, :description)
+      params.require(:carrier).permit(:id, :name, :built)
     end
   end

@@ -4,6 +4,7 @@ class Body extends React.Component {
     this.state = {
       carriers: []
     };
+    // Binds all of the below methods to this!
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.addNewCarrier = this.addNewCarrier.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -12,6 +13,7 @@ class Body extends React.Component {
     this.updateCarrier = this.updateCarrier.bind(this);
   }
 
+  // Form Submit - Creating new Carrier
   handleFormSubmit(name, built) {
     let body = JSON.stringify({ carrier: { name: name, built: built } });
 
@@ -29,13 +31,14 @@ class Body extends React.Component {
         this.addNewCarrier(carrier);
       });
   }
-
+  // Renders the new Carrier to screen
   addNewCarrier(carrier) {
     this.setState({
       carriers: this.state.carriers.concat(carrier)
     });
   }
 
+  // initially sets up the view from the api endpoint
   componentDidMount() {
     fetch("/api/v1/carriers.json")
       .then(response => {
@@ -46,6 +49,7 @@ class Body extends React.Component {
       });
   }
 
+  // Updates the database with new data
   handleUpdate(carrier) {
     fetch(`http://localhost:3000/api/v1/carriers/${carrier.id}`, {
       method: "PUT",
@@ -58,6 +62,7 @@ class Body extends React.Component {
     });
   }
 
+  // Gets rid of old item, and pushes new item on.  In carrier I made the carriers sort by id.
   updateCarrier(carrier) {
     let newCarriers = this.state.carriers.filter(c => c.id !== carrier.id);
     newCarriers.push(carrier);
@@ -66,6 +71,7 @@ class Body extends React.Component {
     });
   }
 
+  // Deletes the item from the database.
   handleDelete(id) {
     // I added this up top so that it would delete quicker visually and then hit database.
     //Probably not a good idea though, since if it doesn't end up deleting from the database, you wouldn't know.
@@ -81,12 +87,14 @@ class Body extends React.Component {
     });
   }
 
+  // This updates the state after deleting the item
   deleteCarrier(id) {
     newCarriers = this.state.carriers.filter(carrier => carrier.id !== id);
     this.setState({
       carriers: newCarriers
     });
   }
+  // FULL ON RENDER.  NewCarrier Form and then all Carriers below that.
   render() {
     return (
       <div>
