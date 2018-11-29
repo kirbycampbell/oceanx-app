@@ -1,7 +1,7 @@
 const Main = props => {
   return (
     <div>
-      <Body />
+      <h1>hello world</h1>
     </div>
   );
 };
