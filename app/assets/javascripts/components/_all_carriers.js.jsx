@@ -1,12 +1,19 @@
-const AllCarriers = (props) => {
-    const carriers = props.carriers.map(carrier => {
-      return (
-        <div key={carrier.id}>
-          <h1>The {carrier.name}</h1>
-          <p>Built {carrier.built} years ago.</p>
-        </div>
-      );
-    });
-    return <div>{carriers}</div>;
-  }
-}
+const AllCarriers = props => {
+  // This statement sorts the carriers by id, that way when updating they stay in order.
+  const sorted = props.carriers.sort((a, b) => a.id - b.id);
+  //This statement maps all carriers from props to const carriers.
+  const carriers = sorted.map(carrier => {
+    return (
+      <div key={carrier.id}>
+        <Carrier
+          carrier={carrier}
+          handleDelete={props.handleDelete}
+          handleUpdate={props.handleUpdate}
+        />
+      </div>
+    );
+  });
+
+  // This phrase literally renders it to the screen.
+  return <div>{carriers}</div>;
+};
