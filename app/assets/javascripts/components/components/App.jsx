@@ -1,4 +1,4 @@
-const Main = props => {
+const App = props => {
   return (
     <div>
       <Body />
